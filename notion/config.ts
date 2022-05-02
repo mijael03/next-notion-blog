@@ -13,6 +13,6 @@ export default class NotionService {
     const response = await this.client.databases.query({
       database_id: database,
     });
-    console.log(response.results[0].properties.Name.title[0].text.content);
+    console.log(response.results[0]);
   }
 }

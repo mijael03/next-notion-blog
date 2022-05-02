@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import NotionService from "../../notion/config";
 
 type Data = {
-  name: string;
+  results: Promise<void>;
 };
 const Client = new NotionService();
 
@@ -11,6 +11,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  Client.getPublishedBlogPosts();
-  res.status(200).json({ name: "John Doe" });
+  const data = Client.getPublishedBlogPosts();
+  res.status(200).json({ results: data });
+  console.log(data);
 }
